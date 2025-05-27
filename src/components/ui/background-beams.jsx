@@ -133,4 +133,9 @@ export const BackgroundBeams = React.memo(({
 });
 
 BackgroundBeams.displayName = "BackgroundBeams";
-asdfasdfasdf
+
+
+
+BackgroundBeams.displayName = "BackgroundBeams";
+
+BackgroundBeams.displayName = "BackgroundBeams";
