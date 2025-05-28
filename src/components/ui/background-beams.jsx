@@ -136,6 +136,3 @@ BackgroundBeams.displayName = "BackgroundBeams";
 
 
 
-BackgroundBeams.displayName = "BackgroundBeams";
-
-BackgroundBeams.displayName = "BackgroundBeams";

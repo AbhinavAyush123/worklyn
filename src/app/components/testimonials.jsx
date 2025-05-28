@@ -59,23 +59,26 @@ export default function Testimonials() {
   }, [emblaApi]);
 
   return (
-    <div className="py-20 bg-muted/5 text-center max-w-3xl flex flex-col items-center mx-auto w-full">
-      <h2 className="text-3xl font-bold mb-8 flex gap-2">Student Success 
-        <span className='bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-sky-500  to-sky-600 '>
-            Stories
+    <div className="py-20 bg-muted/5 text-center flex flex-col items-center w-full">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 flex flex-wrap justify-center gap-2 text-center">
+        <span>Student Success</span>
+        <span className="bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-sky-500 to-sky-600">
+          Stories
         </span>
-        </h2>
+      </h2>
 
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-6 px-4">
+
+      {/* Carousel container */}
+      <div className="overflow-hidden w-full max-w-6xl px-4" ref={emblaRef}>
+        <div className="flex gap-6 w-full">
           {testimonials.map((t, i) => (
             <Card
               key={i}
-              className="min-w-[250px] max-w-sm flex-shrink-0 mx-auto shadow-sm hover:shadow-md transition-shadow"
+              className="flex-shrink-0 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 max-w-sm mx-auto shadow-sm hover:shadow-md transition-shadow"
             >
               <CardContent className="p-6 space-y-3">
                 <div className="flex justify-center">{t.icon}</div>
-                <p className="text-muted-foreground text-sm max-w-sm">“{t.text}”</p>
+                <p className="text-muted-foreground text-sm max-w-sm line-clamp-3">“{t.text}”</p>
                 <div>
                   <p className="font-semibold text-sm">{t.name}</p>
                   <p className="text-xs text-muted-foreground">{t.role}</p>
@@ -86,7 +89,7 @@ export default function Testimonials() {
         </div>
       </div>
 
-      {/* Pagination Dots */}
+      {/* Pagination dots */}
       <div className="flex justify-center mt-6 gap-2">
         {testimonials.map((_, i) => (
           <button
