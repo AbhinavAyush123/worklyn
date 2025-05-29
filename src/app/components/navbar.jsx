@@ -70,16 +70,22 @@ export default function Navbar() {
           </Button>
 
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="secondary" className="bg-transparent hover:bg-gray-100 dark:hover:bg-zinc-800 shadow-none">
-              Login
-            </Button>
+            <Link href="/login">
+              <Button variant="secondary" className="bg-transparent hover:bg-gray-100 dark:hover:bg-zinc-800 shadow-none">
+                Login
+              </Button>
+            </Link>
+            
             <div className="w-[1px] h-9 bg-gray-300 dark:bg-gray-700" />
-            <Button className="group bg-gradient-to-r from-sky-400 to-sky-500 text-white font-semibold hover:shadow-[0_8px_15px_-4px_rgba(56,189,248,0.6)] transition duration-300">
-              Sign Up
-              <span className="group-hover:translate-x-[2px] transition-transform duration-200 ease-in-out">
-                →
-              </span>
-            </Button>
+            <Link href="/signup">
+              <Button className="group bg-gradient-to-r from-sky-400 to-sky-500 text-white font-semibold hover:shadow-[0_8px_15px_-4px_rgba(56,189,248,0.6)] transition duration-300">
+                Sign Up
+                <span className="group-hover:translate-x-[2px] transition-transform duration-200 ease-in-out">
+                  →
+                </span>
+              </Button>
+            </Link>
+            
           </div>
 
           <div className="md:hidden">

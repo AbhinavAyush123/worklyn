@@ -18,7 +18,7 @@ const Hero = () => {
     <div className="w-full flex justify-center relative px-4 mt-10 bg-gradient-b from-gray-100 to-white">
       <BackgroundBeams className="fixed top-0 left-0 w-full h-full z-[-10]" />
 
-      <div className="flex flex-col items-center text-center space-y-6 mt-10 max-w-6xl w-full">
+      <div className="flex flex-col items-center text-center space-y-6  max-w-6xl w-full">
 
         {/* Animated Announcement Button */}
         <motion.div
