@@ -8,12 +8,12 @@ export function Cta() {
   return (
     <>
      <h1
-        className="mt-8 bg-gradient-to-br from-sky-400 to-sky-600 py-4 bg-clip-text text-center text-4xl font-semibold tracking-tight text-transparent md:text-6xl"
+        className="mt-8 bg-gradient-to-br from-sky-400 to-sky-600 py-4 bg-clip-text text-center text-3xl font-semibold tracking-tight text-transparent md:text-6xl"
       >
         Make Your Career Start Here
       </h1>
 
-      <p className="text-center text-gray-500 dark:text-gray-300 mt-6 max-w-2xl mx-auto px-4 text-sm md:text-base">
+      <p className="text-center text-gray-500 dark:text-gray-900 mt-6 max-w-2xl mx-auto px-4 text-sm md:text-base hidden sm:flex">
         Discover job opportunities tailored for students. Apply with one click, get verified, and land your first gig faster than ever.
       </p>
 
@@ -24,7 +24,7 @@ export function Cta() {
                 →
             </span>
         </Button>
-        <Button variant="outline" size="lg">
+        <Button variant="secondary" className="dark:bg-black dark:text-white" >
           Browse Jobs
         </Button>
       </div>

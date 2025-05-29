@@ -30,7 +30,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 z-50 bg-white dark:bg-zinc-900 w-full border-b border-dashed">
+    <header className="fixed top-0 z-50 bg-white dark:bg-zinc-900 w-full border-b border-dashed ">
       <div className="flex items-center justify-between py-3 px-4 md:px-10">
         <div className="flex items-center gap-10">
           <div className="flex items-center gap-2">
