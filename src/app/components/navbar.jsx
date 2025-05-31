@@ -5,9 +5,11 @@ import Link from "next/link";
 import { Menu, Moon, Sun } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { useUser, SignOutButton } from "@clerk/nextjs";
 
 export default function Navbar() {
   const [theme, setTheme] = useState("light");
+  const { user, isSignedIn } = useUser();
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
@@ -30,7 +32,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 z-50 bg-white dark:bg-zinc-900 w-full border-b border-dashed ">
+    <header className="fixed top-0 z-50 bg-white dark:bg-zinc-900 w-full border-b border-dashed border-gray-200 dark:border-gray-800">
       <div className="flex items-center justify-between py-3 px-4 md:px-10">
         <div className="flex items-center gap-10">
           <div className="flex items-center gap-2">
@@ -65,27 +67,33 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
+          <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme" className="hover:text-sky-600">
             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </Button>
 
           <div className="hidden md:flex items-center gap-3">
-            <Link href="/login">
-              <Button variant="secondary" className="bg-transparent hover:bg-gray-100 dark:hover:bg-zinc-800 shadow-none">
-                Login
-              </Button>
-            </Link>
-            
-            <div className="w-[1px] h-9 bg-gray-300 dark:bg-gray-700" />
-            <Link href="/signup">
-              <Button className="group bg-gradient-to-r from-sky-400 to-sky-500 text-white font-semibold hover:shadow-[0_8px_15px_-4px_rgba(56,189,248,0.6)] transition duration-300">
-                Sign Up
-                <span className="group-hover:translate-x-[2px] transition-transform duration-200 ease-in-out">
-                  →
-                </span>
-              </Button>
-            </Link>
-            
+            {!isSignedIn ? (
+              <>
+                <Link href="/login">
+                  <Button variant="secondary" className="hover:text-sky-600 bg-transparent hover:bg-gray-100 dark:hover:bg-zinc-800 shadow-none">
+                    Login
+                  </Button>
+                </Link>
+                <div className="w-[1px] h-9 bg-gray-300 dark:bg-gray-700" />
+                <Link href="/signup">
+                  <Button className="group bg-gradient-to-r from-sky-400 to-sky-500 text-white font-semibold hover:shadow-[0_8px_15px_-4px_rgba(56,189,248,0.6)] transition duration-300">
+                    Sign Up
+                    <span className="group-hover:translate-x-[2px] transition-transform duration-200 ease-in-out">→</span>
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <SignOutButton>
+                <Button variant="outline" className="text-sm">
+                  Sign Out
+                </Button>
+              </SignOutButton>
+            )}
           </div>
 
           <div className="md:hidden">
@@ -113,10 +121,26 @@ export default function Navbar() {
                     Dashboard
                   </Link>
                   <div className="pt-6 border-t border-muted mt-4 flex flex-col gap-3">
-                    <Button variant="outline" className="w-full">
-                      Login
-                    </Button>
-                    <Button className="w-full bg-sky-500 text-white">Sign Up</Button>
+                    {!isSignedIn ? (
+                      <>
+                        <Link href="/login">
+                          <Button variant="outline" className="w-full">
+                            Login
+                          </Button>
+                        </Link>
+                        <Link href="/signup">
+                          <Button className="w-full bg-sky-500 text-white">
+                            Sign Up
+                          </Button>
+                        </Link>
+                      </>
+                    ) : (
+                      <SignOutButton>
+                        <Button variant="outline" className="w-full">
+                          Sign Out
+                        </Button>
+                      </SignOutButton>
+                    )}
                   </div>
                 </div>
               </SheetContent>

@@ -24,13 +24,13 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
+          transition={{ type:"spring" ,delay: 0.2, duration: 0.6 }}
         >
           <Button
             variant="secondary"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 text-gray-900 border border-gray-200 hover:bg-sky-100 shadow-none hover:scale-105 transition dark:bg-gray-800 dark:text-white dark:border-gray-600 mt-20 mb-10"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 text-sky-600 border border-gray-200 hover:bg-sky-100 shadow-none hover:scale-105 transition dark:bg-gray-800 dark:text-white dark:border-gray-600 mt-20 mb-10"
           >
-            <span className="bg-white text-gray-800 dark:bg-gray-700 dark:text-white px-2 py-0.5 rounded-full text-sm">
+            <span className="bg-white text-sky-600 dark:bg-gray-700 dark:text-white px-2 py-0.5 rounded-full text-sm">
               📣 Announcement
             </span>
             <span className="text-sm">Introducing Aspire 🎉</span>
@@ -44,7 +44,7 @@ const Hero = () => {
               key={i}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2, duration: 0.5 }}
+              transition={{ type:"spring" ,delay: i * 0.2, duration: 1 }}
             >
               {word}
             </motion.span>
@@ -55,7 +55,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.6 }}
+          transition={{ type:"spring" ,delay: 1, duration: 0.6 }}
           className="text-3xl sm:text-5xl lg:text-7xl font-bold text-gray-900 dark:text-white"
         >
           With{' '}
