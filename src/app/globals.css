@@ -163,3 +163,69 @@
   }
 }
 
+
+
+
+
+
+
+
+
+
+.scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  cursor: grab;
+}
+
+.scroll-wrapper:active {
+  cursor: grabbing;
+}
+
+.scroll-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: scrollRight 60s linear infinite;
+}
+
+.paused .scroll-track {
+  animation-play-state: paused;
+}
+
+.card {
+  width: 16rem;
+  height: 10rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation */
+@keyframes scrollRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+.swapy-clone {
+  transform: none !important;
+  scale: 1 !important;
+  opacity: 0.9 !important;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  pointer-events: none;
+  transition: none !important;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+}

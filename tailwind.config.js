@@ -9,6 +9,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        skyblue: '#34a4ee', // 👈 custom color name
+        primary_color: '#7e4cd7',
+        primary: '#1DA1F2'
+      },
       // Optional: extend colors, fonts, etc. here
     },
   },

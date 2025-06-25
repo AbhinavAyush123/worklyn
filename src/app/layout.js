@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
         <body className="antialiased ">
           <SidebarWrapper>
             {children}
-            <Toaster />
+            <Toaster richColors={false} position="top-right" />
           </SidebarWrapper>
         </body>
       </html>
