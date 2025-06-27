@@ -2,7 +2,7 @@
 
 
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Button } from '@/components/ui/button'
@@ -169,6 +169,9 @@ export default function QuizPage() {
 
 
  return (
+  <Suspense fallback={<div className="p-4">Loading page...</div>}>
+
+  
    <div className="md:px-10 mt-5 max-w-8xl mx-auto w-full">
      <Link
        href="/dashboard/interview-prep"
@@ -180,7 +183,7 @@ export default function QuizPage() {
 
 
      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mt-5">
-       <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-violet-500 via-fuchsia-600 to-pink-500">
+       <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-blue-600 via-blue-500 to-blue-400">
          Mock Interview
        </h1>
      </div>
@@ -336,6 +339,7 @@ export default function QuizPage() {
        </div>
      )}
    </div>
+   </Suspense>
  )
 }
 

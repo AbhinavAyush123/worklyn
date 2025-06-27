@@ -136,7 +136,7 @@ export default function DashboardPage() {
 
 
  return (
-   <div className="md:px-10 mt-5 max-w-8xl w-full">
+   <div className="md:px-10 mt-7 max-w-8xl w-full">
            <Breadcrumb>
                <BreadcrumbList>
                  <BreadcrumbItem>
@@ -148,9 +148,9 @@ export default function DashboardPage() {
                  </BreadcrumbItem>
                </BreadcrumbList>
              </Breadcrumb>
-     <div className="flex justify-between items-center mt-5 mb-4">
+     <div className="flex justify-between items-center  mb-4">
        <div>
-         <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 via-fuchsia-600 to-pink-500">
+         <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400">
            Interview Preparation
          </h1>
          <p className="text-sm text-neutral-500 mt-1">Powered by AI</p>
@@ -160,7 +160,7 @@ export default function DashboardPage() {
 
      <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
        {/* Average Score Card */}
-       <Card className="relative overflow-hidden border-none w-full p-5 rounded-2xl bg-gradient-to-br from-violet-600 via-fuchsia-600 to-pink-500 text-white shadow-md hover:shadow-xl transition duration-300">
+       <Card className="relative overflow-hidden border-none w-full p-5 rounded-2xl bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white shadow-md hover:shadow-xl transition duration-300">
          <div className="flex flex-col gap-2 z-10 relative">
            <div className="flex justify-between text-sm">
              <span>Average Score</span>
@@ -177,7 +177,7 @@ export default function DashboardPage() {
          <div className="flex flex-col gap-2 z-10 relative">
            <div className="flex justify-between text-sm text-neutral-500 dark:text-neutral-400">
              <span>Questions Practiced</span>
-             <Brain size={16} className="text-fuchsia-600" />
+             <Brain size={16} className="text-blue-600" />
            </div>
            <p className="text-3xl font-semibold text-primary">{totalQuestions}</p>
          </div>
@@ -189,7 +189,7 @@ export default function DashboardPage() {
          <div className="flex flex-col gap-2 z-10 relative">
            <div className="flex justify-between text-sm text-neutral-500 dark:text-neutral-400">
              <span>Latest Score</span>
-             <Trophy size={16} className="text-violet-500" />
+             <Trophy size={16} className="text-blue-500" />
            </div>
            <p className="text-3xl font-semibold text-primary">{latestScore}%</p>
          </div>
@@ -204,7 +204,7 @@ export default function DashboardPage() {
 
 
       
-       <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-violet-500 via-fuchsia-600 to-pink-500">
+       <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-blue-600 via-blue-500 to-blue-400">
          Performance Trend
        </h2>
        <h3 className="text-sm text-neutral-500">Quiz scores over time</h3>
@@ -264,7 +264,7 @@ export default function DashboardPage() {
      <div className="mt-10">
        <div className='flex w-full justify-between'>
          <div className='mb-10'>
-           <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-violet-500 via-fuchsia-600 to-pink-500">
+           <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-blue-600 via-blue-500 to-blue-400">
              Recent Quizzes
            </h2>
            <p className='text-neutral-500'>
@@ -357,7 +357,7 @@ export default function DashboardPage() {
  {done && selectedQuiz?.id === q.id && (
    <DialogContent className="max-w-6xl  border-neutral-200">
      <DialogTitle className="text-2xl font-bold flex gap-2 items-center">
-       <span className='bg-clip-text text-transparent  bg-gradient-to-r from-violet-500 via-fuchsia-600 to-pink-500'>
+       <span className='bg-clip-text text-transparent  bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400'>
          Quiz Results
        </span>
          🏆
@@ -368,7 +368,7 @@ export default function DashboardPage() {
        <p className="mb-1 font-bold text-xl">{q.score}.0%</p>
        <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
          <div
-           className="h-2 bg-gradient-to-r from-violet-500 via-fuchsia-600 to-pink-500 transition-all"
+           className="h-2 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 transition-all"
            style={{ width: `${q.score || 0}%` }}
          />
        </div>

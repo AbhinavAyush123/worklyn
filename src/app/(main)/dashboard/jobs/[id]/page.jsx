@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import { useRouter } from "next/navigation"
 import { createClient } from "@supabase/supabase-js"
@@ -55,7 +55,8 @@ export default function JobDetailsPage() {
  const [loading, setLoading] = useState(true)
  const [dialogOpen, setDialogOpen] = useState(false)
  const [hasApplied, setHasApplied] = useState(false)
- const [isSaved, setIsSaved] = useState(false) // Add saved state
+ const [isSaved, setIsSaved] = useState(false)
+ const [userRole, setUserRole] = useState(null)
  const [applicationData, setApplicationData] = useState({
    name: '',
    email: '',
@@ -93,6 +94,18 @@ export default function JobDetailsPage() {
 
      // Check if user has already applied and saved (only if user is loaded and signed in)
      if (isLoaded && isSignedIn && user && jobData) {
+       // Check user role
+       const { data: userData, error: userError } = await supabase
+         .from("users")
+         .select("role")
+         .eq("id", user.id)
+         .single()
+      
+       if (!userError && userData) {
+         setUserRole(userData.role)
+       }
+
+
        // Check if already applied
        const { data: applicationData } = await supabase
          .from("appliedjobs")
@@ -124,7 +137,7 @@ export default function JobDetailsPage() {
  }, [id, isLoaded, isSignedIn, user])
 
 
- // Save job function - same logic as jobs listing page
+ // Save job function
  const saveJob = async () => {
    if (!user?.id) {
      toast.error('Please sign in to save jobs')
@@ -198,43 +211,6 @@ export default function JobDetailsPage() {
      setError('')
    } else {
      setError('Please upload a PDF file only.')
-   }
- }
-
-
- // Function to upload file to Supabase Storage
- const uploadFileToStorage = async (file, fileName, bucket = 'resumes') => {
-   try {
-     const { data, error } = await supabase.storage
-       .from(bucket)
-       .upload(fileName, file, {
-         cacheControl: '3600',
-         upsert: false
-       })
-
-
-     if (error) {
-       throw error
-     }
-
-
-     // Get public URL
-     const { data: publicData } = supabase.storage
-       .from(bucket)
-       .getPublicUrl(fileName)
-
-
-     return {
-       success: true,
-       filePath: data.path,
-       publicUrl: publicData.publicUrl
-     }
-   } catch (error) {
-     console.error('Upload error:', error)
-     return {
-       success: false,
-       error: error.message
-     }
    }
  }
 
@@ -333,7 +309,7 @@ export default function JobDetailsPage() {
            status: 'Applied',
            applied_at: new Date().toISOString(),
            resume_url: resumeUrl,
-           cover_letter: applicationData.coverLetter.trim() || null, // Save cover letter as text in the table
+           cover_letter: applicationData.coverLetter.trim() || null,
          }
        ])
        .select()
@@ -421,7 +397,14 @@ export default function JobDetailsPage() {
  }
 
 
+ // Function to check if user can apply (is student)
+ const canApply = isLoaded && isSignedIn && userRole === 'student'
+
+
  return (
+  <Suspense fallback={<div className="p-4">Loading page...</div>}>
+
+  
    <div className="min-h-screen dark:bg-bg-neutral-900">
      {/* Main Content */}
      <div className="max-w-6xl mx-auto px-6 mt-10">
@@ -499,7 +482,7 @@ export default function JobDetailsPage() {
                <CheckCircle2 className="mr-2 h-4 w-4" />
                Applied
              </Button>
-           ) : (
+           ) : canApply ? (
              <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                <DialogTrigger asChild>
                  <Button className="group bg-gradient-to-r from-violet-500 via-fuchsia-600 to-pink-500 px-8 dark:text-white">
@@ -638,6 +621,10 @@ export default function JobDetailsPage() {
                  </DialogFooter>
                </DialogContent>
              </Dialog>
+           ) : (
+             <Button disabled className="px-8" variant="outline">
+               Only students can apply
+             </Button>
            )}
           
            {/* Updated Save Button with proper functionality */}
@@ -755,7 +742,7 @@ export default function JobDetailsPage() {
                    <CheckCircle2 className="h-4 w-4 mr-2" />
                    Applied
                  </Button>
-               ) : (
+               ) : canApply ? (
                  <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                    <DialogTrigger asChild>
                      <Button className="group w-full bg-gradient-to-r from-violet-500 via-fuchsia-600 to-pink-500 dark:text-white" size="lg">
@@ -764,6 +751,10 @@ export default function JobDetailsPage() {
                      </Button>
                    </DialogTrigger>
                  </Dialog>
+               ) : (
+                 <Button disabled className="w-full" size="lg" variant="outline">
+                   Only students can apply
+                 </Button>
                )}
               
                {/* Updated Save Button in sidebar with same functionality */}
@@ -809,8 +800,6 @@ export default function JobDetailsPage() {
        </div>
      </div>
    </div>
+   </Suspense>
  )
 }
-
-
-

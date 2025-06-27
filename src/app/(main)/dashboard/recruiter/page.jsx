@@ -1,6 +1,5 @@
 "use client";
 
-
 import React, { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { supabase } from "@/lib/supabase";
@@ -32,18 +31,15 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import DataTable from "./components/data-table";
 
-
 const colorMap = {
- "7D": { button: "bg-purple-600 text-white", fill: "#8b5cf6" },
- "30D": { button: "bg-pink-600 text-white", fill: "#ec4899" },
- "3M": { button: "bg-fuchsia-600 text-white", fill: "#c026d3" },
+ "7D": { button: "bg-blue-600 text-white", fill: "#3b82f6" },
+ "30D": { button: "bg-purple-600 text-white", fill: "#8b5cf6" },
+ "3M": { button: "bg-pink-600 text-white", fill: "#ec4899" },
 };
-
 
 export default function RecruiterDashboard() {
  const { user } = useUser();
  const userId = user?.id ?? null;
-
 
  const [range, setRange] = useState("7D");
  const [stats, setStats] = useState({
@@ -56,13 +52,11 @@ export default function RecruiterDashboard() {
  const [chartData, setChartData] = useState(null);
  const [loading, setLoading] = useState(true);
 
-
  useEffect(() => {
    if (userId) {
      fetchDashboardData(userId);
    }
  }, [userId, range]);
-
 
  async function fetchDashboardData(recruiterId) {
    setLoading(true);
@@ -72,33 +66,25 @@ export default function RecruiterDashboard() {
        .select("*")
        .eq("posted_by", recruiterId);
 
-
      if (jobsError) throw jobsError;
-
 
      setJobListings(jobs || []);
 
-
      const jobIds = jobs?.map((job) => job.id) || [];
-
 
      const { data: applications, error: appError } = await supabase
        .from("appliedjobs")
        .select("*")
        .in("job_id", jobIds);
 
-
      if (appError) throw appError;
-
 
      const { data: interviews, error: interviewError } = await supabase
        .from("interviews")
        .select("*")
        .eq("recruiter_id", recruiterId);
 
-
      if (interviewError) throw interviewError;
-
 
      const { data: users, error: usersError } = await supabase
        .from("users")
@@ -107,9 +93,7 @@ export default function RecruiterDashboard() {
        .not("resume_url", "is", null)
        .limit(3);
 
-
      if (usersError) throw usersError;
-
 
      setCandidates(
        users?.map((u) => ({
@@ -119,20 +103,17 @@ export default function RecruiterDashboard() {
        })) || []
      );
 
-
      const interviewCount = interviews?.length || 0;
      const conversionRate =
        jobs.length > 0
          ? `${Math.floor((applications.length / jobs.length) * 100)}%`
          : "0%";
 
-
      setStats({
        newApplicants: applications.length,
        interviews: interviewCount,
        conversionRate,
      });
-
 
      let chart = [];
      if (range === "3M") {
@@ -142,7 +123,6 @@ export default function RecruiterDashboard() {
          const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
          months.push(d);
        }
-
 
        chart = months.map((monthDate) => {
          const monthLabel = monthDate.toLocaleString("default", {
@@ -161,7 +141,6 @@ export default function RecruiterDashboard() {
        const daysCount = range === "7D" ? 7 : 30;
        const today = new Date();
 
-
        chart = Array.from({ length: daysCount }, (_, i) => {
          const day = new Date(today);
          day.setDate(today.getDate() - (daysCount - 1 - i));
@@ -174,7 +153,6 @@ export default function RecruiterDashboard() {
        });
      }
 
-
      setChartData(chart);
    } catch (error) {
      console.error("Error fetching dashboard data:", error);
@@ -182,7 +160,6 @@ export default function RecruiterDashboard() {
      setLoading(false);
    }
  }
-
 
  function TrendIcon({ trend }) {
    if (!trend) return null;
@@ -194,7 +171,6 @@ export default function RecruiterDashboard() {
    );
  }
 
-
  return (
    <div className="px-4 sm:px-6 lg:px-8 mt-5 max-w-7xl mx-auto min-h-screen flex flex-col gap-4 sm:gap-6 lg:gap-8">
      {/* Stat Cards */}
@@ -205,7 +181,7 @@ export default function RecruiterDashboard() {
          icon={<TrendingUp />}
          trend="+12%"
          description="Total jobs you posted"
-         gradient="bg-gradient-to-br from-violet-600 via-fuchsia-600 to-pink-500 text-white border-none"
+         gradient="bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 text-white border-none"
          lastUpdated="Just now"
          TrendIcon={TrendIcon}
        />
@@ -237,7 +213,6 @@ export default function RecruiterDashboard() {
          TrendIcon={TrendIcon}
        />
      </div>
-
 
      {/* Chart and Suggested Candidates */}
      <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
@@ -288,7 +263,7 @@ export default function RecruiterDashboard() {
                  </defs>
                  <XAxis
                    dataKey="day"
-                   stroke="#C4B5FD"
+                   stroke="#93C5FD"
                    tick={{ fill: "currentColor" }}
                  />
                  <YAxis stroke="#9CA3AF" tick={{ fill: "currentColor" }} />
@@ -297,10 +272,10 @@ export default function RecruiterDashboard() {
                      backgroundColor: "#1F2937",
                      borderRadius: "6px",
                      border: "none",
-                     color: "#E0E7FF",
+                     color: "#DBEAFE",
                    }}
                    itemStyle={{ color: colorMap[range].fill }}
-                   cursor={{ fill: "rgba(147, 51, 234, 0.1)" }}
+                   cursor={{ fill: "rgba(59, 130, 246, 0.1)" }}
                  />
                  <Area
                    type="monotone"
@@ -323,7 +298,6 @@ export default function RecruiterDashboard() {
          </CardContent>
        </Card>
 
-
        {/* Suggested Candidates */}
        <Card className="w-full lg:w-80 border border-neutral-200 dark:border-neutral-800 shadow-none bg-white dark:bg-neutral-900">
          <CardHeader>
@@ -339,7 +313,7 @@ export default function RecruiterDashboard() {
              candidates.map((user) => (
                <div
                  key={user.name}
-                 className="group flex items-center gap-4 p-3 rounded-md cursor-pointer hover:bg-purple-50 dark:hover:bg-purple-900 transition-colors"
+                 className="group flex items-center gap-4 p-3 rounded-md cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
                >
                  <Avatar className="w-10 h-10 shrink-0">
                    <AvatarImage src={user.img} alt={user.name} />
@@ -355,7 +329,7 @@ export default function RecruiterDashboard() {
                  </div>
                  <Button
                    variant="secondary"
-                   className="group-hover:bg-purple-600 group-hover:text-white"
+                   className="group-hover:bg-blue-600 group-hover:text-white transition-colors"
                  >
                    Profile
                  </Button>
@@ -369,7 +343,6 @@ export default function RecruiterDashboard() {
          </CardContent>
        </Card>
      </div>
-
 
      {/* Job Listings Table */}
      <Card className="border-neutral-200 dark:border-neutral-800">
@@ -386,7 +359,6 @@ export default function RecruiterDashboard() {
    </div>
  );
 }
-
 
 function StatCard({
  title,
@@ -414,10 +386,9 @@ function StatCard({
          {title}
        </span>
        {icon && (
-         <div className={gradient ? "text-white" : "text-purple-600"}>{icon}</div>
+         <div className={gradient ? "text-white" : "text-blue-600"}>{icon}</div>
        )}
      </div>
-
 
      <p
        className={cn(
@@ -428,13 +399,11 @@ function StatCard({
        {value}
      </p>
 
-
      {description && (
        <p className={cn("text-xs", gradient ? "text-white" : "text-gray-500 dark:text-gray-400")}>
          {description}
        </p>
      )}
-
 
      {lastUpdated && (
        <p className={cn("text-[11px] mt-1", gradient ? "text-white/80" : "text-gray-400 dark:text-gray-500")}>
@@ -444,6 +413,3 @@ function StatCard({
    </Card>
  );
 }
-
-
-

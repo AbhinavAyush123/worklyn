@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from 'sonner';
 import SidebarWrapper from './components/SidebarWrapper';
+import { Suspense } from 'react';
 
 const poppins = Poppins({
   variable: '--font-poppins',
@@ -19,10 +20,12 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en" className={poppins.variable}>
-        <body className="antialiased ">
+        <body className="antialiased">
           <SidebarWrapper>
-            {children}
-            <Toaster richColors={false} position="top-right" />
+            <Suspense fallback={<div className="p-4">Loading page...</div>}>
+              {children}
+            </Suspense>
+            <Toaster richColors={true} position="top-right" />
           </SidebarWrapper>
         </body>
       </html>

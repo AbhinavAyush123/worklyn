@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 
-export default function DashboardRedirect() {
+function DashboardRedirectContent() {
   const { user, isSignedIn } = useUser();
   const router = useRouter();
 
@@ -26,4 +26,12 @@ export default function DashboardRedirect() {
   }, [isSignedIn]);
 
   return <p className="p-8">Redirecting to your dashboard...</p>;
+}
+
+export default function DashboardRedirect() {
+  return (
+    <Suspense fallback={<p className="p-8">Loading...</p>}>
+      <DashboardRedirectContent />
+    </Suspense>
+  );
 }
