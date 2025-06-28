@@ -40,13 +40,14 @@ export default function Hero() {
     return (
       <div className="w-full h-screen flex flex-col items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-38">
-  <div className="bg-blue-500 p-8 rounded-[2rem] shadow-2xl scale-145 flex items-center justify-center">
-    <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 48 48">
-      <path
-        fill="#ffffff"
-        d="M2.141 34l3.771 6.519.001.001C6.656 41.991 8.18 43 9.94 43l.003 0 0 0h25.03l-5.194-9H2.141zM45.859 34.341c0-.872-.257-1.683-.697-2.364L30.977 7.319C30.245 5.94 28.794 5 27.124 5h-7.496l21.91 37.962 3.454-5.982C45.673 35.835 45.859 35.328 45.859 34.341zM25.838 28L16.045 11.038 6.252 28z"
-      />
-    </svg> 
+  <div className="bg-blue-500 p-4 rounded-[2rem] shadow-2xl scale-145 flex items-center justify-center">
+     <Image 
+                        src="/logo.png" 
+                        alt="Dashboard preview"
+                        width={170}
+                         height={170}
+                         className='bg-blue-500 rounded-sm'
+                      />
   </div>
 
   
@@ -94,12 +95,15 @@ export default function Hero() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 48 48">
-                  <path
-                    fill="#ffffff"
-                    d="M2.141 34l3.771 6.519.001.001C6.656 41.991 8.18 43 9.94 43l.003 0 0 0h25.03l-5.194-9H2.141zM45.859 34.341c0-.872-.257-1.683-.697-2.364L30.977 7.319C30.245 5.94 28.794 5 27.124 5h-7.496l21.91 37.962 3.454-5.982C45.673 35.835 45.859 35.328 45.859 34.341zM25.838 28L16.045 11.038 6.252 28z"
-                  />
-                </svg> 
+              
+                      <Image 
+                        src="/logo.png" 
+                        alt="Dashboard preview"
+                        width={50}
+                         height={50}
+                         className='bg-blue-500 rounded-sm p-0'
+                      />
+  
               </motion.div>
             </motion.div>
 

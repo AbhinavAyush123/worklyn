@@ -663,11 +663,11 @@ export default function DataTable({ data }) {
       },
     },
     {
-      accessorKey: 'created_at',
+      accessorKey: 'applied_at',
       header: 'Applied At',
       cell: ({ row }) => (
         <div className="text-neutral-500">
-          {new Date(row.getValue('created_at')).toLocaleDateString('en-US', {
+          {new Date(row.getValue('applied_at')).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'short',
             day: 'numeric'

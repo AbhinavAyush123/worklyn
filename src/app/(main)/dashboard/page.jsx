@@ -1,37 +1,51 @@
 'use client';
 
+
 import { useEffect, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 
+
 function DashboardRedirectContent() {
-  const { user, isSignedIn } = useUser();
-  const router = useRouter();
+ const { user, isSignedIn } = useUser();
+ const router = useRouter();
 
-  useEffect(() => {
-    const redirectToRoleDashboard = async () => {
-      if (!isSignedIn || !user) return;
 
-      const res = await fetch('/api/get-role');
-      const data = await res.json();
+ useEffect(() => {
+   const redirectToRoleDashboard = async () => {
+     if (!isSignedIn || !user) return;
 
-      if (data.role === 'recruiter') {
-        router.replace('/dashboard/recruiter');
-      } else {
-        router.replace('/dashboard/student');
-      }
-    };
 
-    redirectToRoleDashboard();
-  }, [isSignedIn]);
+     const res = await fetch('/api/get-role');
+     const data = await res.json();
 
-  return <p className="p-8">Redirecting to your dashboard...</p>;
+
+     if (data.role === 'recruiter') {
+       router.replace('/dashboard/recruiter');
+     } else if(data.role === 'student') {
+       router.replace('/dashboard/student');
+     } else{
+       router.replace('/dashboard/admin');
+     }
+   };
+
+
+   redirectToRoleDashboard();
+ }, [isSignedIn]);
+
+
+ return <p className="p-8">Redirecting to your dashboard...</p>;
 }
+
 
 export default function DashboardRedirect() {
-  return (
-    <Suspense fallback={<p className="p-8">Loading...</p>}>
-      <DashboardRedirectContent />
-    </Suspense>
-  );
+ return (
+   <Suspense fallback={<p className="p-8">Loading...</p>}>
+     <DashboardRedirectContent />
+   </Suspense>
+ );
 }
+
+
+
+

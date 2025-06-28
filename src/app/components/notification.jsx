@@ -207,7 +207,7 @@ export default function NotificationsDialog() {
       <Button
   variant="default"
   size="icon"
-  className="bg-gradient-to-r from-violet-500 via-fuchsia-600 to-pink-500 group dark:hover:text-violet-200"
+  className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-500 group"
 >
 <BellIcon className="group-hover:rotate-20 transition duration-200" />
           {hasUnread && (

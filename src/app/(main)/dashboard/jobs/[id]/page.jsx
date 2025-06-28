@@ -420,7 +420,7 @@ export default function JobDetailsPage() {
           
            <h1 className="text-3xl font-bold text-gray-900 mb-2 dark:text-white mt-3">{job.title}</h1>
            <div className="flex items-center gap-2 mb-4">
-             <span className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 via-fuchsia-600 to-pink-500">{job.company}</span>
+             <span className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400">{job.company}</span>
            </div>
           
            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-4 dark:text-white">
@@ -485,7 +485,7 @@ export default function JobDetailsPage() {
            ) : canApply ? (
              <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                <DialogTrigger asChild>
-                 <Button className="group bg-gradient-to-r from-violet-500 via-fuchsia-600 to-pink-500 px-8 dark:text-white">
+                 <Button className="group bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 px-8 dark:text-white">
                    Apply Now
                    <ArrowRight className="group-hover:rotate-360 transition duration-200"/>
                  </Button>
@@ -534,7 +534,7 @@ export default function JobDetailsPage() {
                      <Label>Resume *</Label>
                     
                      {/* Select from saved resumes */}
-                     <div className="space-y-2">
+                     {/* <div className="space-y-2">
                        <Label className="text-sm font-normal">Select from saved resumes:</Label>
                        <Select
                          value={applicationData.selectedResume}
@@ -558,7 +558,7 @@ export default function JobDetailsPage() {
                            ))}
                          </SelectContent>
                        </Select>
-                     </div>
+                     </div> */}
                     
                      {/* Or upload new resume */}
                      <div className="space-y-2">
@@ -605,7 +605,7 @@ export default function JobDetailsPage() {
                 
                  <DialogFooter>
                    <Button
-                     variant="outline"
+                     variant="secondary"
                      onClick={() => setDialogOpen(false)}
                      disabled={submitting}
                    >
@@ -614,7 +614,7 @@ export default function JobDetailsPage() {
                    <Button
                      onClick={handleSubmitApplication}
                      disabled={submitting}
-                     className="bg-gradient-to-r from-violet-500 via-fuchsia-600 to-pink-500 dark:text-white"
+                     className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 dark:text-white"
                    >
                      {submitting ? 'Submitting...' : 'Submit Application'}
                    </Button>
@@ -745,7 +745,7 @@ export default function JobDetailsPage() {
                ) : canApply ? (
                  <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                    <DialogTrigger asChild>
-                     <Button className="group w-full bg-gradient-to-r from-violet-500 via-fuchsia-600 to-pink-500 dark:text-white" size="lg">
+                     <Button className="group w-full bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 dark:text-white" size="lg">
                        Apply Now
                        <ArrowRight className="group-hover:rotate-360 transition duration-200"/>
                      </Button>

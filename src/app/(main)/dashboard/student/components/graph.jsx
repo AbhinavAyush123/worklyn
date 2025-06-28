@@ -150,7 +150,7 @@ const colorMap = {
        headers: { "Content-Type": "application/json" },
        body: JSON.stringify({ jobTitle: title }),
      });
-     if (!res.ok) throw new Error("Failed to fetch salary data");
+     
 
 
      const data = await res.json();

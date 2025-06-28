@@ -14,6 +14,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
+import Image from "next/image";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -90,21 +91,7 @@ export function AppSidebar() {
     fetchUserData();
   }, [user]);
 
-  if (loading) {
-    return (
-      <Suspense fallback={<div className="p-4">Loading page...</div>}>
-        <Sidebar className="border-r border-blue-200 dark:border-neutral-800">
-        <SidebarHeader className="px-4 py-4.5 bg-blue-500 dark:bg-black">
-          <div className="flex items-center gap-3">
-            <div className="w-6 h-6 bg-blue-500 rounded-md animate-pulse" />
-            <div className="w-24 h-6 bg-blue-500 rounded-md animate-pulse" />
-          </div>
-        </SidebarHeader>
-      </Sidebar>
-      </Suspense>
-      
-    );
-  }
+  
 
   const isRecruiter = role === "recruiter";
   const isStudent = role === "student";
@@ -114,20 +101,27 @@ export function AppSidebar() {
 
     
     <Sidebar className="border-r border-blue-200 dark:border-neutral-800">
-      <SidebarHeader className="px-4 py-4.5 bg-blue-500 dark:bg-black">
-        <div className="flex items-center gap-3">
-          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 48 48">
-            <path
-              fill="#ffffff"
-              d="M2.141 34l3.771 6.519C6.656 41.991 8.18 43 9.94 43h25.03l-5.194-9H2.141zM45.859 34.341c0-.872-.257-1.683-.697-2.364L30.977 7.319C30.245 5.94 28.794 5 27.124 5h-7.496l21.91 37.962 3.454-5.982c.681-1.164.867-1.671.867-2.639zM25.838 28L16.045 11.038 6.252 28z"
-            />
-          </svg>
-          <Link
+      <SidebarHeader className=" py-3 bg-blue-500 dark:bg-black">
+        <div className="flex items-top ">
+          <Image 
+            src="/logo.png" 
+            alt="Dashboard preview"
+            width={40}
+            height={30}
+            className="rounded-sm"
+          />
+          <div>
+            <Link
             href="/"
             className="text-xl font-bold tracking-tight text-white hover:text-blue-100 dark:hover:text-blue-400 transition-colors"
           >
             Worklyn
           </Link>
+          <p className="text-white text-xs">
+            Sandra Day O'Connor HS
+          </p>
+          </div>
+          
         </div>
       </SidebarHeader>
 
@@ -164,21 +158,7 @@ export function AppSidebar() {
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-              {isRecruiter && (
-                <SidebarMenuItem>
-                  <SidebarMenuButton asChild className={clsx(
-                    "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white dark:hover:bg-blue-900/20 dark:hover:text-blue-300",
-                    isActive("/dashboard/candidates")
-                      ? "bg-blue-600 text-white dark:bg-blue-800/30 dark:text-blue-300"
-                      : "text-blue-100 dark:text-neutral-300"
-                  )}>
-                    <Link href="/dashboard/candidates" className="flex gap-3 items-center">
-                      <Users className="h-4 w-4 text-blue-200 dark:text-blue-400" />
-                      <span>Candidates</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              )}
+              
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

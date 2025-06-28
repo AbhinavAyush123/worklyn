@@ -183,7 +183,7 @@ export default function AddFriendsSheet() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" className=  "bg-gradient-to-r text-white from-violet-500 via-fuchsia-600 to-pink-500 hover:text-white">Add Friends</Button>
+        <Button variant="ghost" className=  "bg-gradient-to-r text-white from-blue-600 via-blue-500 to-blue-400 hover:text-white">Add Friends</Button>
       </SheetTrigger>
 
       <SheetContent side="right" className="w-full max-w-md p-6">

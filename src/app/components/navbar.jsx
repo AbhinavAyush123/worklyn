@@ -6,6 +6,7 @@ import { Menu, Moon, Sun } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useUser, SignOutButton } from "@clerk/nextjs";
+import Image from "next/image";
 
 export default function Navbar() {
   const [theme, setTheme] = useState("light");
@@ -36,14 +37,15 @@ export default function Navbar() {
       <div className="flex items-center justify-between py-3 px-4 md:px-10">
         <div className="flex items-center gap-8">
           <div className="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48">
-              <path
-                fill="#2563eb"
-                d="M2.141 34l3.771 6.519.001.001C6.656 41.991 8.18 43 9.94 43l.003 0 0 0h25.03l-5.194-9H2.141zM45.859 34.341c0-.872-.257-1.683-.697-2.364L30.977 7.319C30.245 5.94 28.794 5 27.124 5h-7.496l21.91 37.962 3.454-5.982C45.673 35.835 45.859 35.328 45.859 34.341zM25.838 28L16.045 11.038 6.252 28z"
-              />
-            </svg>
+             <Image 
+                    src="/logo.png" 
+                    alt="Dashboard preview"
+                    width={30}
+                     height={30}
+                     className='bg-blue-500 rounded-sm'
+                  />
             <Link href="/" className="text-lg font-bold text-blue-600 dark:text-blue-400">
-              Aspire UI
+              Worklyn
             </Link>
           </div>
 
