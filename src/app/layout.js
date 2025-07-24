@@ -18,7 +18,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+  <ClerkProvider>
       <html lang="en" className={poppins.variable}>
         <body className="antialiased">
           <SidebarWrapper>

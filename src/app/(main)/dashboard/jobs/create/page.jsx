@@ -269,7 +269,7 @@ const CreateJobPage = () => {
               <img
                 src={imagePreview}
                 alt="Preview"
-                className="w-full h-40 object-cover rounded-md"
+                className="w-full h-40 object-fit rounded-md"
               />
               <Button
                 variant="ghost"

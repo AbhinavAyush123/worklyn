@@ -50,24 +50,12 @@ export default function Navbar() {
           </div>
 
           <nav className="hidden md:flex gap-2 items-center">
-            <Link href="/listings">
+            <Link href="/dashboard/jobs">
               <Button variant="ghost" className="text-zinc-700 hover:text-blue-600 dark:text-zinc-300 dark:hover:text-blue-400">
                 Listings
               </Button>
             </Link>
-            <Link href="/resume">
-              <Button variant="ghost" className="text-zinc-700 hover:text-blue-600 dark:text-zinc-300 dark:hover:text-blue-400">
-                Resume
-              </Button>
-            </Link>
-            <Link href="/profile">
-              <Button variant="ghost" className="text-zinc-700 hover:text-blue-600 dark:text-zinc-300 dark:hover:text-blue-400 flex items-center gap-2">
-                Profile
-                <span className="bg-blue-100 px-2 rounded text-blue-800 font-semibold text-xs border border-blue-200 dark:bg-blue-900 dark:text-blue-200 dark:border-blue-700">
-                  new
-                </span>
-              </Button>
-            </Link>
+            
             <Link href="/dashboard">
               <Button variant="ghost" className="text-zinc-700 hover:text-blue-600 dark:text-zinc-300 dark:hover:text-blue-400">
                 Dashboard
@@ -123,21 +111,12 @@ export default function Navbar() {
                       Home
                     </Button>
                   </Link>
-                  <Link href="/listings">
+                  <Link href="/dashboard/jobs">
                     <Button variant="ghost" className="w-full justify-start text-zinc-700 hover:text-blue-600 dark:text-zinc-300 dark:hover:text-blue-400">
                       Listings
                     </Button>
                   </Link>
-                  <Link href="/resume">
-                    <Button variant="ghost" className="w-full justify-start text-zinc-700 hover:text-blue-600 dark:text-zinc-300 dark:hover:text-blue-400">
-                      Resume
-                    </Button>
-                  </Link>
-                  <Link href="/profile">
-                    <Button variant="ghost" className="w-full justify-start text-zinc-700 hover:text-blue-600 dark:text-zinc-300 dark:hover:text-blue-400">
-                      Profile
-                    </Button>
-                  </Link>
+                 
                   <Link href="/dashboard">
                     <Button variant="ghost" className="w-full justify-start text-zinc-700 hover:text-blue-600 dark:text-zinc-300 dark:hover:text-blue-400">
                       Dashboard

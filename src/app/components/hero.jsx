@@ -28,6 +28,7 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.5], [0, 1, 1]);
   
   // This will disable 3D effects after animation completes
+  
   const perspective = useTransform(scrollYProgress, [0, 0.5, 0.51], ["100px", "100px", "none"], {
     clamp: true
   });
@@ -40,15 +41,15 @@ export default function Hero() {
     return (
       <div className="w-full h-screen flex flex-col items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-38">
-  <div className="bg-blue-500 p-4 rounded-[2rem] shadow-2xl scale-145 flex items-center justify-center">
-     <Image 
-                        src="/logo.png" 
-                        alt="Dashboard preview"
-                        width={170}
-                         height={170}
-                         className='bg-blue-500 rounded-sm'
-                      />
-  </div>
+          <div className="bg-blue-500 p-4 rounded-[2rem] shadow-2xl scale-145 flex items-center justify-center">
+            <Image 
+              src="/logo.png" 
+              alt="Dashboard preview"
+              width={170}
+              height={170}
+              className='bg-blue-500 rounded-sm'
+            />
+          </div>
 
   
     <Button 
@@ -123,7 +124,11 @@ export default function Hero() {
               transition={{ delay: 1.0, duration: 0.8 }}
               className="text-md md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed"
             >
-              The ultimate platform connecting students with internships, part-time jobs, and career resources.
+              The Ultimate{' '}
+              <span className="font-bold font-mono text-black dark:text-white">
+                Sandra Day O'Connor Highschool
+              </span>{' '}
+              Job Portal
             </motion.p>
 
             <motion.div
@@ -452,7 +457,7 @@ export default function Hero() {
       </section>
 
       {/* FAQ Section - Smaller text */}
-      <section className="w-full py-24 mb-10 bg-background">
+      <section className="w-full py-24 mb-10 bg-background" id="help">
         <div className="container px-4 md:px-6 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
